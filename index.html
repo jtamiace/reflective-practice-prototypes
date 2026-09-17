@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflection Circle — Prototypes</title>
+<style>
+  :root{
+    --bg:#eef2ee; --card:#ffffff; --ink:#17241d; --muted:#5c6b61; --faint:#8a978c;
+    --line:#dde4dd; --accent:#0a7a5f; --accent-ink:#ffffff; --soft:#e4f0ea;
+    --shadow:0 1px 2px rgba(20,40,32,.05),0 12px 34px rgba(20,40,32,.09);
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 20px 56px}
+  header{margin-bottom:8px}
+  .eyebrow{font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:27px;line-height:1.2;margin:8px 0 6px;font-weight:650}
+  .lede{color:var(--muted);font-size:15px;max-width:56ch;margin:0}
+  .note{margin:16px 0 26px;font-size:13px;color:var(--faint);background:var(--soft);border:1px solid var(--line);border-radius:11px;padding:11px 14px}
+  .grid{display:flex;flex-direction:column;gap:13px}
+  .card{display:flex;align-items:flex-start;gap:15px;background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px 18px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+  .card:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,40,32,.06),0 18px 42px rgba(20,40,32,.13);border-color:#c9d6cd}
+  .badge{flex:0 0 42px;width:42px;height:42px;border-radius:11px;background:var(--soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums}
+  .card.all .badge{background:var(--accent);color:var(--accent-ink);font-size:19px}
+  .c-body{min-width:0;flex:1}
+  .c-title{font-size:16px;font-weight:640;display:flex;align-items:center;gap:8px}
+  .c-desc{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .go{margin-top:9px;font-size:13px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:5px}
+  .go svg{width:15px;height:15px}
+  footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+  @media (max-width:520px){ .wrap{padding:30px 16px 44px} h1{font-size:23px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SESEMAT · Reflective practice</div>
+    <h1>Reflection Circle prototypes</h1>
+    <p class="lede">Interactive, teacher-facing mockups of a facilitated WhatsApp reflection circle. Tap any prototype to walk through it on your phone — no sign-in, no install.</p>
+  </header>
+
+  <div class="note">These are clickable proof-of-concept mockups for feedback. All names, numbers and avatars are placeholders; nothing here connects to a real WhatsApp account.</div>
+
+  <div class="grid">
+    <a class="card all" href="all-scenarios.html">
+      <div class="badge">★</div>
+      <div class="c-body">
+        <div class="c-title">All scenarios in one place</div>
+        <div class="c-desc">The full prototype — switch between all four scenarios using the tabs at the top.</div>
+        <span class="go">Open prototype <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="scenario-0.html">
+      <div class="badge">0</div>
+      <div class="c-body">
+        <div class="c-title">Join &amp; weekly prompt</div>
+        <div class="c-desc">A teacher opts in, joins the circle via invite link, and meets the first weekly reflective prompt.</div>
+        <span class="go">Open prototype <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="scenario-1.html">
+      <div class="badge">1</div>
+      <div class="c-body">
+        <div class="c-title">Private reflection</div>
+        <div class="c-desc">Reply in the circle, react, or reflect privately with the bot — then choose what, if anything, to share back.</div>
+        <span class="go">Open prototype <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="scenario-2.html">
+      <div class="badge">2</div>
+      <div class="c-body">
+        <div class="c-title">Cross-circle digest</div>
+        <div class="c-desc">The bot shares an anonymised, themes-only digest of what teachers across circles are working on.</div>
+        <span class="go">Open prototype <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <span>Learning Equality · Reflection Circle</span>
+    <span>Prototype for co-design feedback</span>
+  </footer>
+</div>
+</body>
+</html>
