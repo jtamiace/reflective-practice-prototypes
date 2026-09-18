@@ -308,49 +308,49 @@
   function Splash(text){return {t:'splash',text:text};}
   function PreSend(text){return {t:'presend',text:text};}
   function Engage(){return {t:'engage'};}
-  var ENGAGE_REPLY='This week my group practical fell flat — I only had 2 microscopes for the whole class. Next time I’ll try a station rota.';
+  var ENGAGE_REPLY='One of my S2s who usually stays quiet explained photosynthesis to her group today, completely unprompted 🌱 Made my week.';
   function Overlay(note,label){return {t:'overlay',note:note,label:label};}
   function End(){return {t:'end'};}
 
   function weekly(link){
-    if(link) return Bot('Think of one lesson this week that didn’t go as planned. What happened, and how did your learners respond?\n\nTwo ways to take part 👇\n• Reply right here in the circle, or\n• Reflect privately with me first — tap “Reflect privately”.\n\n🔒 Reflect privately →',{tmpl:'Weekly reflection'});
+    if(link) return Bot('This week, think of one moment in your teaching that went well — a lesson that landed, a small breakthrough, a learner who surprised you. What happened? 🌱\n\nTwo ways to take part 👇\n• Share your bright spot right here in the circle, or\n• Had a lesson that didn’t go to plan? Reflect on it privately with me.\n\n🔒 Reflect privately →',{tmpl:'Weekly reflection'});
     return Bot('Think of one lesson this week that didn’t go as planned. What happened, and how did your learners respond?\n\nReply any time this week — it stays in this circle.',{tmpl:'Weekly reflection'});
   }
 
   function tail(){return [
-    Bot('Let’s take it in three quick steps — this stays private.'),
-    Bot('What happened in that lesson?',{tmpl:'Reflect · 1 of 3 — Describe'}),
+    Bot('Let’s take one tricky moment from this week and think it through — three quick steps.'),
+    Bot('What’s one lesson this week that didn’t go the way you’d hoped? What happened?',{tmpl:'Reflect · 1 of 3 — Describe'}),
     Me('I planned a group practical on photosynthesis, but I only had 2 microscopes for ~50 students. Half the class drifted off.'),
-    Choice('interpret',{tmpl:'Reflect · 2 of 3 — Interpret',body:'Why do you think it went that way?'},[
+    Choice('interpret',{tmpl:'Reflect · 2 of 3 — Interpret',body:'What do you think got in the way?'},[
       {label:'Materials / apparatus',val:'materials'},
       {label:'Learners’ prior knowledge',val:'priorknow'},
       {label:'Pacing / time',val:'pacing'}]),
-    Bot('What’s one thing you’ll try next time?',{tmpl:'Reflect · 3 of 3 — Plan forward'}),
+    Bot('What’s one small thing you’ll try differently next time?',{tmpl:'Reflect · 3 of 3 — Plan forward'}),
     Me('Next time I’ll pair students and rotate them through stations, so everyone gets hands-on time even with limited apparatus.'),
     Choice('insight',{tmpl:'💡 One more thing',body:'Teachers in two other circles ran into the same apparatus gap this term. Want to see what they tried?'},[
       {label:'Show me',val:'show',next:[Bot('From other circles (anonymised): the two moves that came up most were a shared-apparatus station rota, and pairing a confident learner with a developing one for the write-up.',{tmpl:'From other circles'})]},
       {label:'Not now',val:'no',next:[Bot('No problem — maybe another time. 🙂')]}]),
     Bot('',{tmpl:'Your reflection',textFn:function(s){return 'Here’s your reflection, saved privately:\n\n• Lesson: photosynthesis practical — 2 microscopes / ~50 students\n• Why: '+(INTERP[s.interpret]||INTERP.materials)+'\n• Next time: pair students + rotate through stations';}}),
-    Choice('consent',{body:'Would you like to share any of this with your circle? You decide what — if anything — leaves this private chat.'},[
-      {label:'Share all',val:'all',next:[
-        Bot('Great — I’ve put a draft in your circle. Read it over, tweak anything, then send it when you’re ready. 🌿'),
-        To('pod'),
-        PreSend('Reflecting on this week: I only had 2 microscopes for ~50 students in my photosynthesis practical and lost half the class. Next time I’ll pair students and rotate them through stations so everyone gets hands-on time.'),
-        In('david','Great idea — stealing this 🙌')]},
-      {label:'Just my “next-time” idea',val:'idea',next:[
+    Choice('consent',{body:'You’ve done the hard part. 🌿 Would you like to share anything from this with your circle? Your “next-time” idea might be exactly what another teacher needs — but only if you’re comfortable. You decide what leaves this chat.'},[
+      {label:'Share my next-time idea',val:'idea',next:[
         Bot('Great — I’ve put a draft in your circle. Read it over, tweak anything, then send it when you’re ready. 🌿'),
         To('pod'),
         PreSend('My takeaway this week: pair students + rotate through stations so everyone gets hands-on time, even with limited apparatus 🙌'),
         In('david','Love this 👍')]},
-      {label:'Keep private',val:'private',next:[
+      {label:'Share the whole reflection',val:'all',next:[
+        Bot('Great — I’ve put a draft in your circle. Read it over, tweak anything, then send it when you’re ready. 🌿'),
+        To('pod'),
+        PreSend('Reflecting on this week: I only had 2 microscopes for ~50 students in my photosynthesis practical and lost half the class. Next time I’ll pair students and rotate them through stations so everyone gets hands-on time.'),
+        In('david','Great idea — stealing this 🙌')]},
+      {label:'Keep it private',val:'private',next:[
         Bot('Of course — this stays just between us. Nothing is shared to the circle. 🌿')]}]),
     End()
   ];}
 
   // engage branches (Scenario 1: reply / react / private link)
-  function privateBranch(){ return [To('dm'),Bot('Welcome, Grace 🌿 You’ve opened a private reflection on this week’s prompt. Because you started it, we can chat freely for a while — it stays between us unless you choose to share.')].concat(tail()); }
-  function reactBranch(){ return [Notif('Hi Grace 👋 I saw you’d like to reflect on this week’s prompt. Let’s do it here — privately. It stays between us unless you choose to share.')].concat(tail()); }
-  function replyRest(){ return [In('ruth','That’s a really honest reflection, Grace 🙏 Thank you for sharing it with the circle.'),In('david','I’m going to try the station rota too 🙌'),Bot('Love this. And any time you’d like to think one through privately first, just tap “Reflect privately” on the weekly prompt. 🌿'),End()]; }
+  function privateBranch(){ return [To('dm'),Bot('This is a private space — just you and me. 🌿 Nothing here is shared unless you choose to. Because you started this chat, we can talk freely for a while.')].concat(tail()); }
+  function reactBranch(){ return [Notif('Hi Grace 👋 Looks like you’d like to reflect privately. Let’s do it here — just between us. Nothing is shared unless you choose to.')].concat(tail()); }
+  function replyRest(){ return [In('ruth','Love this, Grace 🌱 Thank you for sharing a bright spot with us.'),In('david','Lovely to read 🙌'),Bot('Beautiful. 🌿 And any time a lesson feels harder than you’d like, you can reflect on it privately with me — just tap “Reflect privately” on the weekly prompt.'),End()]; }
 
   var SCENES={
     '0':{title:'Join & weekly prompt',variants:false,steps:function(){return [
@@ -387,8 +387,8 @@
     '1':{title:'Private reflection',variants:false,steps:function(){return [
       To('pod'),
       weekly(true),
-      In('sarah','Mine was a fractions lesson — I lost half the class by the second example 😅'),
-      In('robert','Same in my physics practical this week. Reading these already helps 🙏'),
+      In('sarah','A learner who’s usually silent explained a fraction to her whole group today — I nearly cheered 🎉'),
+      In('robert','My S3s finally got series circuits after we built one by hand. Small win, but I’ll take it ⚡🙌'),
       Engage()   // Grace can reply in the circle, react, or tap the private link
     ];}},
     '2':{title:'Cross-circle digest',variants:false,steps:function(){return [To('pod'),
