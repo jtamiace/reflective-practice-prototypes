@@ -185,6 +185,11 @@
   .overlay .ov-btn{background:#00a884;color:#fff;border:none;border-radius:26px;padding:14px 26px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--wa);display:flex;gap:9px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.4);animation:softpulse 1.6s ease-in-out infinite}
   .overlay .ov-btn .icn{width:19px;height:19px;color:#fff}
   .overlay.startov{background:#efe7de}
+  .replaytop{position:absolute;left:12px;right:12px;bottom:12px;z-index:32;display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;background:var(--accent);color:var(--accent-ink);border:none;border-radius:14px;font-family:var(--sans);font-weight:600;font-size:15px;padding:15px 18px;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.34);animation:dropUp .3s ease-out}
+  .replaytop:hover{filter:brightness(1.06)}
+  .replaytop:active{transform:translateY(1px)}
+  .replaytop .icn{width:18px;height:18px;color:var(--accent-ink)}
+  @keyframes dropUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
   /* "Opening WhatsApp…" hand-off splash */
   .overlay.splash{background:rgba(6,10,8,.86)}
@@ -654,33 +659,8 @@
   }
 
   function endScene(){
-    var sc=SCENES[state.scene];
-    var i=order.indexOf(state.scene), last=(i===order.length-1);
-    var nextK=order[(i+1)%order.length], nextTitle=SCENES[nextK].title;
-    var toB = sc.variants && state.variant==='A';   // just finished approach A → offer approach B
-    var esub = !sc.variants ? 'Scenario complete'
-             : toB ? 'Approach B: '+sc.vlabel.B
-             : 'You’ve now seen both approaches';
-    var html='<div class="endtop">'+
-      '<div class="etitle"><span class="echk">'+IC.check+'</span><b>'+esc2(sc.title)+'</b></div>'+
-      '<div class="esub">'+esc2(esub)+'</div>';
-    if(toB){
-      html+='<div class="ebtns"><button class="ereplay" id="endReplay">'+IC.replayic+'Replay</button>'+
-        '<button class="enext" id="endNext">See approach B'+IC.arrow+'</button></div>'+
-        '<button class="eskip" id="endSkip">Skip to '+esc2(nextTitle)+' →</button>';
-    } else {
-      var nextLabel=(last?'Start over · ':'Next · ')+nextTitle;
-      html+='<div class="ebtns"><button class="ereplay" id="endReplay">'+IC.replayic+'Replay</button>'+
-        '<button class="enext" id="endNext">'+esc2(nextLabel)+IC.arrow+'</button></div>';
-    }
-    html+='</div>';
-    ov.innerHTML=html;
-    var card=ov.querySelector('.endtop');
-    var sb=document.querySelector('.statusbar');
-    card.style.top=((sb?sb.offsetHeight:32)+hdr.offsetHeight+pin.offsetHeight+12)+'px';
+    ov.innerHTML='<button class="replaytop" id="endReplay">'+IC.replayic+'Replay this scenario</button>';
     document.getElementById('endReplay').onclick=function(){ ov.innerHTML=''; start(); };
-    document.getElementById('endNext').onclick=function(){ if(toB){ setVariant('B'); } else { gotoScene(nextK); } };
-    var sk=document.getElementById('endSkip'); if(sk) sk.onclick=function(){ gotoScene(nextK); };
   }
 
   function start(){
