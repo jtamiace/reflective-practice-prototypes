@@ -184,6 +184,7 @@
   .overlay .ov-note{color:#e9efe9;font-size:13px;font-family:var(--wa);max-width:26ch;opacity:.85}
   .overlay .ov-btn{background:#00a884;color:#fff;border:none;border-radius:26px;padding:14px 26px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--wa);display:flex;gap:9px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,.4);animation:softpulse 1.6s ease-in-out infinite}
   .overlay .ov-btn .icn{width:19px;height:19px;color:#fff}
+  .overlay.startov{background:#efe7de}
 
   /* "Opening WhatsApp…" hand-off splash */
   .overlay.splash{background:rgba(6,10,8,.86)}
@@ -704,6 +705,11 @@
   var nav=document.getElementById('scenes');
   order.forEach(function(k){ var b=document.createElement('button'); b.className='scene-btn'; b.setAttribute('data-sc',k); b.innerHTML='<span class="n">'+k+'</span>'+SCENES[k].title; b.onclick=function(){ gotoScene(k); }; nav.appendChild(b); });
 
-  renderTabs(); start();
+  function showStart(){
+    ov.innerHTML='<div class="overlay startov"><button class="ov-btn" id="startBtn">Start demo</button></div>';
+    document.getElementById('startBtn').onclick=function(){ ov.innerHTML=''; start(); };
+  }
+
+  renderTabs(); showStart();
 })();
 </script>
