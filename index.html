@@ -32,6 +32,12 @@
   .go svg{width:15px;height:15px}
   footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
   @media (max-width:520px){ .wrap{padding:30px 16px 44px} h1{font-size:23px} }
+  .sectitle{font-size:15px;font-weight:650;margin:24px 0 2px;color:var(--ink)}
+  .secnote{margin:0 0 12px;font-size:13px;color:var(--faint)}
+  .mgrid{display:flex;flex-direction:column;gap:9px}
+  .mlink{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;text-decoration:none;color:inherit;font-weight:600;font-size:15px;box-shadow:var(--shadow)}
+  .mlink:hover{border-color:#c9d6cd}
+  .mbadge{flex:0 0 30px;width:30px;height:30px;border-radius:8px;background:var(--soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
 </style>
 </head>
 <body>
@@ -44,6 +50,8 @@
 
   <div class="note">These are clickable proof-of-concept mockups for feedback. All names, numbers and avatars are placeholders; nothing here connects to a real WhatsApp account.</div>
 
+  <h2 class="sectitle">Preview with phone frame</h2>
+  <p class="secnote">Best on a computer — shows the prototype inside a phone mockup.</p>
   <div class="grid">
     <a class="card all" href="all-scenarios.html">
       <div class="badge">★</div>
@@ -80,6 +88,15 @@
         <span class="go">Open prototype <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
     </a>
+  </div>
+
+  <h2 class="sectitle">Open on your phone (full screen)</h2>
+  <p class="secnote">No device frame — fills the screen. Best for testing on a phone.</p>
+  <div class="mgrid">
+    <a class="mlink" href="all-scenarios.html?full=1"><span class="mbadge">★</span> All scenarios</a>
+    <a class="mlink" href="scenario-0.html?full=1"><span class="mbadge">0</span> Join &amp; weekly prompt</a>
+    <a class="mlink" href="scenario-1.html?full=1"><span class="mbadge">1</span> Private reflection</a>
+    <a class="mlink" href="scenario-2.html?full=1"><span class="mbadge">2</span> Cross-circle digest</a>
   </div>
 
   <footer>
